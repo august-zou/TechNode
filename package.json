@@ -1,0 +1,14 @@
+{
+  "name": "TechNode",
+  "version": "0.0.0",
+  "description": "nodejs+angularjs+socket.io chat room",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "august-zou",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.10.4",
+    "socket.io": "^1.2.1"
+  }
+}
