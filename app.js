@@ -12,9 +12,19 @@ app.use(function (req, res) {
 
 var io = require('socket.io').listen(app.listen(port))
 
+var messages = [];
+
 io.sockets.on('connection', function (socket) {
-  socket.emit('connected')
-})
+  socket.on('getAllMessages',function(){
+    console.log(messages);
+    socket.emit('allMessages',messages);
+  });
+  socket.on('createMessage',function(message){
+    console.log(message);
+    messages.push(message);
+    io.sockets.emit('messageAdded',message);
+  });
+});
 
 console.log('TechNode is on port ' + port + '!');
 

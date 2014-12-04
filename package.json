@@ -4,6 +4,7 @@
   "description": "nodejs+angularjs+socket.io chat room",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js"
   },
   "author": "august-zou",
   "license": "ISC",
