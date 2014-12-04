@@ -1,3 +1,3 @@
-angular.module('techNodeApp',[]);
+angular.module('techNodeApp',[ngRoute]);
 
 
