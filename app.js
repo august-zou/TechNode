@@ -15,14 +15,14 @@ var io = require('socket.io').listen(app.listen(port))
 var messages = [];
 
 io.sockets.on('connection', function (socket) {
-  socket.on('getAllMessages',function(){
+  socket.on('messages.read',function(){
     console.log(messages);
-    socket.emit('allMessages',messages);
+    socket.emit('messages.read',messages);
   });
-  socket.on('createMessage',function(message){
+  socket.on('messages.create',function(message){
     console.log(message);
     messages.push(message);
-    io.sockets.emit('messageAdded',message);
+    io.sockets.emit('messages.add',message);
   });
 });
 
