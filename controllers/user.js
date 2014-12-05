@@ -18,7 +18,7 @@ exports.findByEmailOrCreate = function (email, callback) {
       user = new db.User
       user.name = email.split('@')[0]
       user.email = email
-      user.avatarUrl = gravatar.url(email)
+      user.avatarUrl = gravatar.url(email,{s:'100'})
       user.save(callback)
     }
   })

@@ -47,14 +47,12 @@ app.get('/api/validate', function (req, res) {
 
 app.post('/api/login', function (req, res) {
   email = req.body.email
-  console.log('login '+email);
   if (email) {
     Controllers.User.findByEmailOrCreate(email, function(err, user) {
       if (err) {
         res.json(500, {msg: err})
       } else {
         req.session._userId = user._id
-        console.log("login "+user._id);
         res.json(user)
       }
     })
@@ -78,7 +76,7 @@ io.set('authorization', function(handshakeData, accept) {
   handshakeData.cookie = Cookie.parse(handshakeData.headers.cookie)
   var connectSid = handshakeData.cookie['connect.sid']
   if (connectSid) {
-     connectSid = cookieParser.signedCookie(connectSid, 'technode');
+      connectSid = cookieParser.signedCookie(connectSid, 'technode');
     sessionStore.get(connectSid, function(error, session) {
       if (error) {
         accept(error.message, false)
@@ -100,11 +98,9 @@ var messages = [];
 
 io.sockets.on('connection', function (socket) {
   socket.on('messages.read',function(){
-    console.log(messages);
     socket.emit('messages.read',messages);
   });
   socket.on('messages.create',function(message){
-    console.log(message);
     messages.push(message);
     io.sockets.emit('messages.add',message);
   });
