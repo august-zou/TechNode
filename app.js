@@ -51,9 +51,17 @@ app.post('/api/login', function (req, res) {
     Controllers.User.findByEmailOrCreate(email, function(err, user) {
       if (err) {
         res.json(500, {msg: err})
-      } else {
+      } else  {
         req.session._userId = user._id
-        res.json(user)
+        Controllers.User.online(user._id, function (err, user) {
+          if (err) {
+            res.json(500, {
+              msg: err
+            })
+          } else {
+            res.json(user)
+          }
+        })
       }
     })
   } else {
@@ -61,9 +69,18 @@ app.post('/api/login', function (req, res) {
   }
 })
 
-app.get('/api/logout', function (req, res) {
-  req.session._userId = null
-  res.json(401)
+app.get('/api/logout', function(req, res) {
+  _userId = req.session._userId
+  Controllers.User.offline(_userId, function (err, user) {
+    if (err) {
+      res.json(500, {
+        msg: err
+      })
+    } else {
+      res.json(200)
+      delete req.session._userId
+    }
+  })
 })
 
 app.use(function (req, res) {

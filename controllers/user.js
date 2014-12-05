@@ -23,3 +23,34 @@ exports.findByEmailOrCreate = function (email, callback) {
     }
   })
 }
+
+exports.getOnlineUsers = function(callback) {
+  db.User.find({
+    online: true
+  }, callback)
+}
+
+exports.getOnlineUsers = function(callback) {
+  db.User.find({
+    online: true
+  }, callback)
+}
+
+exports.online = function(_userId, callback) {
+  db.User.findOneAndUpdate({
+    _id: _userId
+  }, {
+    $set: {
+      online: true
+    }
+  }, callback)
+}
+exports.offline = function(_userId, callback) {
+  db.User.findOneAndUpdate({
+    _id: _userId
+  }, {
+    $set: {
+      online: false
+    }
+  }, callback)
+}
