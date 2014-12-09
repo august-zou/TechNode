@@ -20,6 +20,7 @@
     "gravatar": "^1.1.0",
     "cookie": "^0.1.2",
     "connect-mongo": "^0.4.1",
-    "connect": "^3.3.3"
+    "connect": "^3.3.3",
+    "mongodb": "^1.4.23"
   }
 }

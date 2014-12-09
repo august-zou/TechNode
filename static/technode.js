@@ -1,5 +1,7 @@
 angular.module('techNodeApp',['ngRoute']).
   run(function($window,$rootScope,$http,$location){
+    $window.moment.lang('zh-cn')
+    
     $http({
       url: '/api/validate',
       method: 'GET'
